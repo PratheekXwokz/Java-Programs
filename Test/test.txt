@@ -1,0 +1,69 @@
+1) We Can Create Constants Using Static Keyword.
+
+2) There are 2 types of Data Types. Primitive and Non-Primitive
+Primitive Data Types:These are predefined data types 
+byte,int,float,long,short,boolean,char;
+Non Primitive:-These are developer defined data types.
+String is an example of non primitive data type.
+
+3)Specifying data type is mandatory inorder to allocate a specific memory location. i.e each datatype has a predefined memory.
+   we Specify the datatype withrespect to the value passed.
+
+5)Variable Initiliztion is a process of declaring a variable and passing a value/literals to the varibale.
+  Where as assigning is declaring a variable and then paasing the value onthe next linee;
+  
+  Syntax of initialization:- dataType variableName=literal;
+             Exmaple:- int number=123; 
+			 
+             Exmaple of assigning  :String name;
+			                        name="Pratheek";
+
+4)it should start with a lowercase and the next word should start with an uppercase
+Ex:- nameOfStudent;
+or it can use an Underscore
+Ex:- name_Of_Student;
+
+6)Array isa sequence which stores multiple values in it.
+ex: int[] array={1,2,3,4,5,6,7,8,10};
+
+7)No.Index value can never be a negative number.
+
+8)Array is Stored in  a Constant pool.
+
+9)We can pass multiple values intoan array;
+  can be used to retrive a specific value from the specified index;
+
+ 15) If you do not initalize an array the file will be compiled but during execution it points to the memory location.
+     Because whenever we declare a variable there will be a memory allocated to it in the constant pool and whenever we pass 
+	 the value it gets stored in the constant pool.
+
+17)Static Keywors:-Static keyword means it belongs to  a speific type itself we cannot create multiple instances of it.
+   It might be a variable name or a method.
+   Static variable:-It means the variable is constant and cannot be changed.
+   Static method :the static method canbe called only once and cannot be called multiple times like an instance.
+   
+18)No we cannot overload or override a static method.
+
+19)
+
+20)Whenever the static block is called the static method gets executed first.
+
+21)no a Constructor cannot be static in java.
+
+23)Constructor chaining is used to connect different methods using this keyword.
+
+24)Constructor is used to create multiple instance of an class .new keyword is used to create an instance.
+
+26)We can call a sub class from a super class using extends keyword.It is a process of inheritance
+   ex: subclass extends superclass
+
+27)we can create instance of a child class within parent class using new.
+    ex ParentClass parentclass=new ChildClass();
+	
+28)Class is aBlueprint to create objects whereas instance is a property of a class
+
+29)instance of a class can be created by calling a Constructor.
+
+
+   
+
