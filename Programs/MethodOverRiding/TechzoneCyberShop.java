@@ -1,18 +1,28 @@
 class TechzoneCyberShop extends CyberShop{
+	
+/*TechzoneCyberShop(int since,String ownerName,int noOfSystems){
+		super(since,ownerName,noOfSystems);
+	}*/
+
+	
 
 void printing(){
 	System.out.println("Printer is available");
 }
-@Override	
+//@Override	
 void close(boolean isClose){
-		System.out.println("Child Class....Shop is not closed");
+	if(isClose==true)
+		System.out.println("Child Class....Shop is closed");
 	}
+
+	
+//@Override
 void connectToInternet(boolean available){
 	if(available==true){
-		System.out.println("Internet Connection is Available");
+		System.out.println("Child Class.... Internet Connection is Available");
 	}
 	else{
-		System.out.println("Internet connection is Unavailable");
+		System.out.println("Child Class....Internet connection is Unavailable");
 	}
 	
 }
