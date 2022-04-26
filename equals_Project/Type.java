@@ -1,0 +1,10 @@
+package com.project.equals;
+
+public enum Type {
+	
+	FULL_FACE_HELMET,HALF_FACE_HELMET,MODUlAR_HELMET,HALF_SHELL_HELMET,
+	OFF_ROAD_HELMETS,DUAL_SPORT_HELMETS
+
+}
+
+
