@@ -1,4 +1,4 @@
-;package com.xworkz.methods.integer;
+package com.xworkz.methods.integer;
 
 public class IntMethodsA {
 
