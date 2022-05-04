@@ -26,15 +26,14 @@ public class CakeDAO {
 
 	public void updatePriceByFlavour(Double priceToUpdate, Flavour flavour) {
 		for (int index = 0; index < this.dtos.length; index++) {
-			CakeDTO dto=dtos[index];
-			
+			CakeDTO dto = dtos[index];
+
 			System.out.println("Flavour is " + flavour);
 			if (dto.getFlavour().equals(flavour)) {
 				dto.setPrice(priceToUpdate);
 				System.out.println("Updated Price " + priceToUpdate);
 				break;
-			} 
-			else {
+			} else {
 				System.out.println("Price Cannor Be Updated For The Given Flavour");
 			}
 		}
@@ -42,206 +41,180 @@ public class CakeDAO {
 
 	public void updatePriceAndQuantityByFlavour(Double priceToUpdate, Float quantityToUpdate, Flavour flavour) {
 		for (int index = 0; index < this.dtos.length; index++) {
-			CakeDTO dto2=dtos[index];
-		
+			CakeDTO dto2 = dtos[index];
+
 			System.out.println("Flavour is " + flavour);
-			System.out.println("Existing Favour is "+dto2.getFlavour());
+			System.out.println("Existing Favour is " + dto2.getFlavour());
 			if (dto2.getFlavour().equals(flavour)) {
 				dto2.setPrice(priceToUpdate);
 				dto2.setQuantity(quantityToUpdate);
 				System.out.println("Updated Price " + priceToUpdate);
 				System.out.println("Updated Quantity " + quantityToUpdate);
 				break;
-			} 
-			else {
+			} else {
 				System.out.println("Price Cannor Be Updated For The Given Flavour");
 			}
 		}
 	}
 
 	public void updateShapeById(Shape shapeToUpdate, Integer id) {
-		for (int index= 0; index< this.dtos.length; index++) {
-			CakeDTO dto3=dtos[index];
+		for (int index = 0; index < this.dtos.length; index++) {
+			CakeDTO dto3 = dtos[index];
 			System.out.println("Id is " + id);
 			if (dto3.getId().equals(id)) {
 				dto3.setShape(shapeToUpdate);
 				System.out.println("Updated Shape " + shapeToUpdate);
 				break;
-			} 
-			else {
+			} else {
 				System.out.println("Shape Cannot be Updated By Id");
 			}
 		}
 	}
-	
+
 	public void updateTypeByIdAndFlavour(Type typeToUpdate, Integer id, Flavour flavour) {
-		for (int index = 0; index< this.dtos.length; index++) {
-		
+		for (int index = 0; index < this.dtos.length; index++) {
+
 			System.out.println("Flavour is " + flavour);
-			System.out.println("Existing Favour is "+ dtos[index].getFlavour());
-			if (dtos[index].getFlavour().equals(flavour)&&dtos[index].getId().equals(id)) {
+			System.out.println("Existing Favour is " + dtos[index].getFlavour());
+			if (dtos[index].getFlavour().equals(flavour) && dtos[index].getId().equals(id)) {
 				dtos[index].setType(typeToUpdate);
-				System.out.println("Updated Type " +typeToUpdate);
+				System.out.println("Updated Type " + typeToUpdate);
 				break;
-			} 
-			else {
+			} else {
 				System.out.println("Price Cannor Be Updated For The Given Flavour");
 			}
 		}
 	}
-	public void updatePriceAndShapeAndTypeByQuantity(Double priceToUpdate, Shape shapeToUpdate, Type typeToUpdate,Float quantity) {
+
+	public void updatePriceAndShapeAndTypeByQuantity(Double priceToUpdate, Shape shapeToUpdate, Type typeToUpdate,
+			Float quantity) {
 		for (int index = 0; index < this.dtos.length; index++) {
-			CakeDTO dto5=dtos[index];
-		
-			System.out.println("Quantity is " + quantity );
+			CakeDTO dto5 = dtos[index];
+
+			System.out.println("Quantity is " + quantity);
 			if (dto5.getQuantity().equals(quantity)) {
 				dto5.setPrice(priceToUpdate);
 				dto5.setShape(shapeToUpdate);
 				dto5.setType(typeToUpdate);
 				System.out.println("Updated Price " + priceToUpdate);
 				System.out.println("Updated Shape " + shapeToUpdate);
-				System.out.println("Updated Type "+typeToUpdate);
+				System.out.println("Updated Type " + typeToUpdate);
 				break;
-			} 
-			else {
+			} else {
 				System.out.println("Price Cannor Be Updated For The Given Flavour");
 			}
 		}
 	}
-	
+
 	public CakeDTO findById(Integer id) {
-		for (int index=0;index<this.dtos.length;index++) {
-			CakeDTO dto6=dtos[index];
-			
-			System.out.println("Id is "+id);
-			if(dto6.getId().equals(id)) {
-				System.out.println("The Cake id is Found "+id);
+		for (int index = 0; index < this.dtos.length; index++) {
+			CakeDTO dto6 = dtos[index];
+
+			System.out.println("Id is " + id);
+			if (dto6.getId().equals(id)) {
+				System.out.println("The Cake id is Found " + id);
 				break;
+			} else {
+				System.out.println("Cannot find " + id + " in Cake");
+
 			}
-			else {
-				System.out.println("Cannot find "+id+" in Cake");
-				
-			}
-			
-		}return null;
+
+		}
+		return null;
 	}
-	
-	public CakeDTO findByIdAndFlavour(Integer id,Flavour flavour) {
-		for (int index=0;index<this.dtos.length;index++) {
-			CakeDTO dto7=dtos[index];
-			
-			System.out.println("Id is "+id);
-			System.out.println("Flavour is "+flavour);
-			if(dto7.getId().equals(id)&&(dto7.getFlavour().equals(flavour))) {
-				System.out.println("The Cake is "+id+" and the Flavour is "+flavour);
-				break;
-			}
-			else
-			{
-				System.out.println("Cannot find "+id+" and "+flavour);
-			}
-		
-	}return null;
 
- }
-	
-	public CakeDTO findPriceById(Integer id) {
-		for (int index=0;index<this.dtos.length;index++) {
-			CakeDTO dto9=dtos[index];
-			
-			System.out.println("Id is "+id);
-			if(dto9.getId().equals(id)) {
-				System.out.println("The Price for the given ID is "+dto9.getPrice());
-				break;
-			}
-			else
-			{
-				System.out.println("Cannot find id "+id);
-			}
-				
-	 }return null;
-  }
-	
-	public CakeDTO findFlavourById(Integer id) {
-		for (int index=0;index<this.dtos.length;index++) {
-			CakeDTO dto10=dtos[index];
-			
-			System.out.println("Id is "+id);
-			if(dto10.getId().equals(id)) {
-				System.out.println("The Flavour for the given ID is "+dto10.getFlavour());
-				break;
-			}
-			else
-			{
-				System.out.println("Cannot find id "+id);
-			}
-				
-	 }return null;
-  }
-	
-	public CakeDTO findAll() {
+	public CakeDTO findByIdAndFlavour(Integer id, Flavour flavour) {
+		for (int index = 0; index < this.dtos.length; index++) {
+			CakeDTO dto7 = dtos[index];
 
-		for (int index=0;index<this.dtos.length;index++) {
-			CakeDTO dto11=dtos[index];
-			
-			if(dto11!=null) {
-				for(int loop=0;loop<dtos.length;loop++) {
-					System.out.println("All Conditions are Sattisfied"+dtos[loop]);
-					
+			System.out.println("Id is " + id);
+			System.out.println("Flavour is " + flavour);
+			if (dto7.getId().equals(id) && (dto7.getFlavour().equals(flavour))) {
+				System.out.println("The Cake is " + id + " and the Flavour is " + flavour);
+				break;
+			} else {
+				System.out.println("Cannot find " + id + " and " + flavour);
+			}
+
+		}
+		return null;
+
+	}
+
+	public Double findPriceById(Integer id) {
+		for (int index = 0; index < this.dtos.length; index++) {
+			CakeDTO dto9 = dtos[index];
+
+			System.out.println("Id is " + id);
+			if (dto9.getId().equals(id)) {
+				return dto9.getPrice();
+			} else {
+				System.out.println("Cannot find id " + id);
+			}
+
+		}
+		return null;
+	}
+
+	public Flavour findFlavourById(Integer id) {
+		for (int index = 0; index < this.dtos.length; index++) {
+			CakeDTO dto10 = dtos[index];
+
+			System.out.println("Id is " + id);
+			if (dto10.getId().equals(id)) {
+				return dto10.getFlavour();
+			} else {
+				System.out.println("Cannot find id " + id);
+			}
+
+		}
+		return null;
+	}
+
+	public CakeDTO[] findAll() {
+
+		for (int index = 0; index < this.dtos.length; index++) {
+			CakeDTO dto11 = dtos[index];
+
+			if (dto11.getClass() != null) {
+				System.out.println("All Conditions are Sattisfied");
+				for (int repeat = 0; repeat < dtos.length; repeat++) {
+					System.out.println(dtos[repeat]);
 				}
-				break;
-			}
-			else
-			{
+				return dtos;
+			} else {
 				System.out.println("Cannot find The Cake");
 			}
-				
-	 }return null;
-  
-		
+
+		}
+		return null;
+
 	}
-	
-	public CakeDTO findByMaxPrice(Double price) {
-	
-	for (int index=0;index<this.dtos.length;index++) {
-		CakeDTO dto12=dtos[index];
-		
-		System.out.println("Price is "+price);
-		if(dto12.getPrice().equals(price)) {
-			System.out.println("The Maximum Price is "+price);
-			break;
-		}
-	    else
-		{
-			System.out.println(price+" Not a Maximum Price");
-		}
-			
- }return null;
 
-	
-}
-	
-	public CakeDTO findByMinPrice(Double price) {
-		
-	for (int index=0;index<this.dtos.length;index++) {
-		CakeDTO dto12=dtos[index];
-		
-		System.out.println("Price is "+price);
-		if(dto12.getPrice().equals(price)) {
-			System.out.println("The Minimum Price is "+price);
-			break;
+	public Double findByMaxPrice() {
+		double max = 0;
+		for (int index = 0; index < this.dtos.length; index++) {
+			CakeDTO dto12 = dtos[index];
+			double price = dto12.getPrice();
+			System.out.println(max + " " + price);
+			max = Math.max(max, price);
 		}
-	    else
-		{
-			System.out.println(price+" Not a Minimum Price");
-		}
-			
- }return null;
 
-	
-}
-	
-	
-	
-	
+		return max;
+
+	}
+
+	public Double findByMinPrice() {
+		double min = Double.MAX_VALUE;
+		for (int index = 0; index < this.dtos.length; index++) {
+			CakeDTO dto12 = dtos[index];
+			double price = dto12.getPrice();
+			System.out.println(min + " " + price);
+			min = Math.min(min, price);
+		}
+
+		return min;
+
+	}
+
 }
