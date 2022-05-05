@@ -155,23 +155,22 @@ public class SongDAO {
 
 	}
 
-	public SongDTO[] findTotal() {
+	public int findTotal() {
 
+		int total=0;
 		for (int index = 0; index < this.dtos.length; index++) {
 			SongDTO dto11 = dtos[index];
 
 			if (dto11.getClass() != null) {
-				System.out.println("All Conditions are Satisfied");
-				for (int repeat = 0; repeat < dtos.length; repeat++) {
-					System.out.println(dtos[repeat]);
+				total++;
+				
 				}
-				return dtos;
-			} else {
+			 else {
 				System.out.println("Cannot find The Cake");
 			}
 
 		}
-		return null;
+		return total;
 
 	}
 
