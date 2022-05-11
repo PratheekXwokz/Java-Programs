@@ -6,6 +6,7 @@ import com.xworkz.toothpaste.constants.Color;
 import com.xworkz.toothpaste.constants.Grams;
 import com.xworkz.toothpaste.dao.ToothPasteDAO;
 import com.xworkz.toothpaste.dto.ToothPasteDTO;
+import com.xworkz.toothpaste.exception.ValueIsInvalidException;
 import com.xworkz.toothpaste.service.ToothPasteService;
 
 public class ToothPasteRunner {
@@ -71,19 +72,25 @@ public class ToothPasteRunner {
 		tooth5.setMfgDate(LocalDate.of(2022, 6, 27));
 		tooth5.setExpiryDate(LocalDate.of(2023, 2, 22));
 
-		
-		ToothPasteService service=new ToothPasteService();
-	    service.validateAndSave(tooth);
-	    service.validateAndSave(tooth1);
-	    service.validateAndSave(tooth2);
-	    service.validateAndSave(tooth3);
-	    service.validateAndSave(tooth4);
-	    service.validateAndSave(tooth5);
-
-
-	    
-	    
-	    
+		ToothPasteService service = new ToothPasteService();
+		try {
+			service.validateAndSave(tooth);
+			service.validateAndSave(tooth1);
+			service.validateAndSave(tooth2);
+			service.validateAndSave(null);
+			service.validateAndSave(tooth4);
+			service.validateAndSave(tooth5);
+		} catch (ValueIsInvalidException e) {
+			System.out.println("Message " + e.getMessage());
+			System.out.println("Cause: " + e.getCause());
+			System.out.println("The Localized Message: " + e.getLocalizedMessage());
+			System.out.println("hashCode is " + e.hashCode());
+			System.out.println("Fill in STack Trace: " + e.fillInStackTrace());
+			System.out.println("To String: " + e.toString());
+			System.out.println("Init Cause: " + e.initCause(null));
+			e.printStackTrace();
+		}
+		System.out.println("File is Saved");
 
 	}
 
