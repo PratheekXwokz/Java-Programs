@@ -13,6 +13,8 @@ public class ToothPasteRunner {
 	public static void main(String[] args) {
 
 		ToothPasteDTO tooth = new ToothPasteDTO();
+		ToothPasteService service = new ToothPasteService();
+		try {
 		tooth.setId(1);
 		tooth.setBrand("Colgate");
 		tooth.setColor(Color.BLUE);
@@ -53,7 +55,7 @@ public class ToothPasteRunner {
 		tooth3.setExpiryDate(LocalDate.of(2022, 7, 25));
 
 		ToothPasteDTO tooth4 = new ToothPasteDTO();
-		tooth4.setId(5);
+		tooth4.setId(0);
 		tooth4.setBrand("CloseUp");
 		tooth4.setColor(Color.RED);
 		tooth4.setQuantityInGms(Grams.HUNDRED);
@@ -72,12 +74,10 @@ public class ToothPasteRunner {
 		tooth5.setMfgDate(LocalDate.of(2022, 6, 27));
 		tooth5.setExpiryDate(LocalDate.of(2023, 2, 22));
 
-		ToothPasteService service = new ToothPasteService();
-		try {
 			service.validateAndSave(tooth);
 			service.validateAndSave(tooth1);
 			service.validateAndSave(tooth2);
-			service.validateAndSave(null);
+			service.validateAndSave(tooth3);
 			service.validateAndSave(tooth4);
 			service.validateAndSave(tooth5);
 		} catch (ValueIsInvalidException e) {
