@@ -30,7 +30,6 @@ public class Test {
              Integer newNum=10;
              int numa=newNum.intValue();
              System.out.println(numa);
-             Integer.ge
 		}
 	}
 
