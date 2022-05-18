@@ -1,15 +1,15 @@
-package com.xworkz.powerconsumption.dao;
+package com.xworkz.powerconsumption.service;
 
 import java.util.Optional;
 
 import com.xworkz.powerconsumption.dto.PowerConsumptionDTO;
+import com.xworkz.powerconsumption.exception.CustomerAlreadyExistException;
+import com.xworkz.powerconsumption.exception.InvalidDataException;
 
-public interface PowerConsumptionDAO {
-	int TOTAL_SIZE = 25;
+public interface PowerConsumptionService {
+	boolean validateAndSave(PowerConsumptionDTO dto) throws InvalidDataException;
 
-	boolean save(PowerConsumptionDTO dto);
-
-	void saveMultiple(PowerConsumptionDTO[] dto1);
+	void validateAndSaveMultiple(PowerConsumptionDTO[] dto1) throws InvalidDataException;
 
 	void printDetails();
 
