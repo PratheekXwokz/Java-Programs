@@ -12,7 +12,6 @@ import com.xworkz.powerconsumption.service.PowerConsumptionServiceImp;
 
 public class PowerConsumptionServiceRunner {
 	public static void main(String[] args) {
-		PowerConsumptionDTO dto = new PowerConsumptionDTO();
 		PowerConsumptionDAO dao = new PowerConsumptionDAOImp();
 		PowerConsumptionService customer = new PowerConsumptionServiceImp(dao);
 		try {
@@ -70,24 +69,40 @@ public class PowerConsumptionServiceRunner {
 					dto25 };
 
 			customer.validateAndSaveMultiple(name);
-			customer.updateMinChargeByDivision("BESCOM", 6.5);
 			Optional<PowerConsumptionDTO> name1 = customer.findByCustomerNameAndDivision("Ajay", "CESCOM");
 			if (name1.isPresent()) {
 				PowerConsumptionDTO div = name1.get();
 				System.out.println(div);
 			}
+			
+			System.out.println("************************************");
+			customer.findByName("Ajay");
+			System.out.println("************************************");
+
+			// customer.deleteByCustomerName("Roy");
+			System.out.println("************************************");
+
+			// customer.deleteByDivision("CESCOM");
+			System.out.println("************************************");
+
+			customer.updateMinChargeByDivision("BESCOM", 180);
+			System.out.println("************************************");
+
+			customer.updateRatePerUnitByDivision("CESCOM", 6.8);
+			System.out.println("************************************");
+
+			customer.findByDivision("GESCOM");
+			System.out.println("************************************");
 
 			Optional<Double> rate = customer.findRatePerUnitByDivision("MESCOM");
 			if (rate.isPresent()) {
 				Double getRate = rate.get();
 				System.out.println(getRate);
 			}
+			System.out.println("****************************************");
 
-			customer.findDueAmountByCusomerName("Prokshith");
-			customer.findByName("Ajay");
-			customer.updateRatePerUnitByDivision("CESCOM", 6.8);
-			customer.deleteByCustomerName("Roy");
-			customer.deleteByDivision("CESCOM");
+			customer.findDueAmountByCustomerName("Suhas");
+			System.out.println("************************************");
 
 		} catch (InvalidDataException i) {
 			System.out.println("Message " + i.getMessage());

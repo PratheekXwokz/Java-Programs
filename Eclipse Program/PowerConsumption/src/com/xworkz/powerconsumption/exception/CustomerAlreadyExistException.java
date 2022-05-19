@@ -10,4 +10,3 @@ public class CustomerAlreadyExistException extends RuntimeException {
 		super(msg);
 	}
 }
-

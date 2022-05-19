@@ -40,8 +40,8 @@ public class PowerConsumptionDAOImp implements PowerConsumptionDAO {
 	public Optional<PowerConsumptionDTO> findByName(String name) {
 		for (int i = 0; i < dtos.length; i++) {
 			PowerConsumptionDTO powerConsumptionDTO = dtos[i];
-			if (name.equals(powerConsumptionDTO.getCustomerName())) {
-				System.out.println("Dto is found for " + name);
+			if (powerConsumptionDTO != null && name.equals(powerConsumptionDTO.getCustomerName())) {
+				System.out.println("Dto is found for find by name " + powerConsumptionDTO);
 				return Optional.of(powerConsumptionDTO);
 			}
 
@@ -55,8 +55,8 @@ public class PowerConsumptionDAOImp implements PowerConsumptionDAO {
 	public void deleteByCustomerName(String name) {
 		for (int i = 0; i < dtos.length; i++) {
 			PowerConsumptionDTO power1 = dtos[i];
-			if (name.equals(power1.getCustomerName())) {
-				power1.setCustomerName(null);
+			if (power1 != null && name.equals(power1.getCustomerName())) {
+				this.dtos[i] = null;
 			}
 
 		}
@@ -66,9 +66,9 @@ public class PowerConsumptionDAOImp implements PowerConsumptionDAO {
 	@Override
 	public void deleteByDivision(String division) {
 		for (int i = 0; i < dtos.length; i++) {
-			PowerConsumptionDTO power1 = dtos[i];
-			if (division.equals(power1.getDivision())) {
-				power1.setDivision(null);
+			PowerConsumptionDTO power2 = dtos[i];
+			if (power2 != null && division.equals(power2.getDivision())) {
+				this.dtos[i] = null;
 			}
 
 		}
@@ -76,36 +76,48 @@ public class PowerConsumptionDAOImp implements PowerConsumptionDAO {
 	}
 
 	@Override
-	public Double updateMinChargeByDivision(String division, double min) {
+	public void updateMinChargeByDivision(String division, double min) {
 		for (int i = 0; i < dtos.length; i++) {
 			PowerConsumptionDTO power3 = dtos[i];
 			if (division.equals(power3.getDivision())) {
+				System.out.println("The Minimum Charge is Updated By Division " + min);
 				power3.setMinCharge(min);
 			}
 
 		}
-		return min;
 	}
 
 	@Override
-	public Double updateRatePerUnitByDivision(String division, double newRate) {
+	public void updateRatePerUnitByDivision(String division, double newRate) {
 		for (int i = 0; i < dtos.length; i++) {
 			PowerConsumptionDTO power4 = dtos[i];
 			if (division.equals(power4.getDivision())) {
+				System.out.println("The Rate Per Unit is Updated by " + newRate);
 				power4.setRatePerUnit(newRate);
-				return newRate;
 			}
 		}
-		return null;
 	}
 
 	@Override
 	public Optional<PowerConsumptionDTO[]> findByDivision(String division) {
+		int found = 0;
 		for (int i = 0; i < dtos.length; i++) {
 			PowerConsumptionDTO power5 = dtos[i];
 			if (division.equals(power5.getDivision())) {
-				System.out.println("Dto is found for " + division);
-				return Optional.of(dtos);
+				System.out.println("DTO is found by Division " + power5);
+				found++;
+			}
+		}
+		if (found > 0) {
+			PowerConsumptionDTO[] temp = new PowerConsumptionDTO[found];
+			for (int j = 0; j < temp.length; j++) {
+				for (int k = 0; k < dtos.length; k++) {
+					PowerConsumptionDTO power5 = dtos[k];
+					if (division.equals(power5.getDivision())) {
+						temp[j] = power5;
+					}
+
+				}
 			}
 		}
 		return Optional.empty();
@@ -139,7 +151,7 @@ public class PowerConsumptionDAOImp implements PowerConsumptionDAO {
 	}
 
 	@Override
-	public Optional<Double> findDueAmountByCusomerName(String name) {
+	public Optional<Double> findDueAmountByCustomerName(String name) {
 		for (int i = 0; i < dtos.length; i++) {
 			PowerConsumptionDTO power8 = dtos[i];
 			if (name.equals(power8.getCustomerName())) {

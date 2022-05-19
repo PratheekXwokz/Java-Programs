@@ -19,9 +19,9 @@ public interface PowerConsumptionDAO {
 
 	void deleteByDivision(String division);// many delete
 
-	Double updateMinChargeByDivision(String division, double min);
+	void updateMinChargeByDivision(String division, double min);
 
-	Double updateRatePerUnitByDivision(String division, double newRate);
+	void updateRatePerUnitByDivision(String division, double newRate);
 
 	Optional<PowerConsumptionDTO[]> findByDivision(String division);
 
@@ -29,6 +29,6 @@ public interface PowerConsumptionDAO {
 
 	Optional<Double> findRatePerUnitByDivision(String division);
 
-	Optional<Double> findDueAmountByCusomerName(String customerName);
+	Optional<Double> findDueAmountByCustomerName(String customerName);
 
 }
