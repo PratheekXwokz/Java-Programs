@@ -74,7 +74,7 @@ public class PowerConsumptionServiceRunner {
 				PowerConsumptionDTO div = name1.get();
 				System.out.println(div);
 			}
-			
+
 			System.out.println("************************************");
 			customer.findByName("Ajay");
 			System.out.println("************************************");

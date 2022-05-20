@@ -46,7 +46,6 @@ public class PowerConsumptionDAOImp implements PowerConsumptionDAO {
 			}
 
 		}
-		System.out.println("Dto is not found for " + name);
 		return Optional.empty();
 
 	}
@@ -79,7 +78,7 @@ public class PowerConsumptionDAOImp implements PowerConsumptionDAO {
 	public void updateMinChargeByDivision(String division, double min) {
 		for (int i = 0; i < dtos.length; i++) {
 			PowerConsumptionDTO power3 = dtos[i];
-			if (division.equals(power3.getDivision())) {
+			if (division != null && division.equals(power3.getDivision())) {
 				System.out.println("The Minimum Charge is Updated By Division " + min);
 				power3.setMinCharge(min);
 			}
@@ -91,7 +90,7 @@ public class PowerConsumptionDAOImp implements PowerConsumptionDAO {
 	public void updateRatePerUnitByDivision(String division, double newRate) {
 		for (int i = 0; i < dtos.length; i++) {
 			PowerConsumptionDTO power4 = dtos[i];
-			if (division.equals(power4.getDivision())) {
+			if (division!= null && division.equals(power4.getDivision())) {
 				System.out.println("The Rate Per Unit is Updated by " + newRate);
 				power4.setRatePerUnit(newRate);
 			}
@@ -103,7 +102,7 @@ public class PowerConsumptionDAOImp implements PowerConsumptionDAO {
 		int found = 0;
 		for (int i = 0; i < dtos.length; i++) {
 			PowerConsumptionDTO power5 = dtos[i];
-			if (division.equals(power5.getDivision())) {
+			if (division != null && division.equals(power5.getDivision())) {
 				System.out.println("DTO is found by Division " + power5);
 				found++;
 			}
@@ -119,6 +118,7 @@ public class PowerConsumptionDAOImp implements PowerConsumptionDAO {
 
 				}
 			}
+			return Optional.of(temp);
 		}
 		return Optional.empty();
 
@@ -128,7 +128,7 @@ public class PowerConsumptionDAOImp implements PowerConsumptionDAO {
 	public Optional<PowerConsumptionDTO> findByCustomerNameAndDivision(String name, String division) {
 		for (int i = 0; i < dtos.length; i++) {
 			PowerConsumptionDTO power6 = dtos[i];
-			if (name.equals(power6.getCustomerName()) & division.equals(power6.getDivision())) {
+			if (name !=null && division !=null && name.equals(power6.getCustomerName()) & division.equals(power6.getDivision())) {
 				System.out.println("The Customer Details for the given name and DIvision are: " + power6);
 				return Optional.of(power6);
 
@@ -142,7 +142,7 @@ public class PowerConsumptionDAOImp implements PowerConsumptionDAO {
 	public Optional<Double> findRatePerUnitByDivision(String division) {
 		for (int i = 0; i < dtos.length; i++) {
 			PowerConsumptionDTO power7 = dtos[i];
-			if (division.equals(power7.getDivision())) {
+			if (division!=null && division.equals(power7.getDivision())) {
 				System.out.println("The Rate Per Unit of GIven DIvision is: " + power7.getRatePerUnit());
 				return Optional.of(power7.getRatePerUnit());
 			}
@@ -154,7 +154,7 @@ public class PowerConsumptionDAOImp implements PowerConsumptionDAO {
 	public Optional<Double> findDueAmountByCustomerName(String name) {
 		for (int i = 0; i < dtos.length; i++) {
 			PowerConsumptionDTO power8 = dtos[i];
-			if (name.equals(power8.getCustomerName())) {
+			if (name !=null && name.equals(power8.getCustomerName())) {
 				System.out.println("The Due Amount For The Given Customer is: " + power8.getDueAmount());
 				return Optional.of(power8.getDueAmount());
 

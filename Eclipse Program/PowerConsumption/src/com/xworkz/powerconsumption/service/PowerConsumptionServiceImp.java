@@ -13,9 +13,8 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 public class PowerConsumptionServiceImp implements PowerConsumptionService {
-	@NonNull
-	private PowerConsumptionDAO dao;
-	String specialCharacters = "!@#$%^&*()_+{}<>,.?/:;";
+	private @NonNull PowerConsumptionDAO dao;
+	private String specialCharacters = "!@#$%^&*()_+{}<>,.?/:;";
 
 	@Override
 	public boolean validateAndSave(PowerConsumptionDTO dto) throws InvalidDataException, CustomerAlreadyExistException {
@@ -48,23 +47,16 @@ public class PowerConsumptionServiceImp implements PowerConsumptionService {
 			} else {
 				throw new InvalidDataException("Invalid Rate Per Unit");
 			}
-			for (int i = 0; i < customerName.length(); i++) {
-				if (customerName != null && customerName.length() >= 3 && customerName.length() <= 15
-						&& !Character.isDigit(customerName.charAt(i))
-						&& !this.specialCharacters.contains(Character.toString(customerName.charAt(i)))) {
-					System.out.println("Valid Name");
-				} else {
-					throw new InvalidDataException("Invalid Name");
-				}
+			boolean validName = false;
+			validName = validatingName(customerName, validName);
+			if (validName) {
+				System.out.println("Valid Name");
+
 			}
-			for (int i = 0; i < division.length(); i++) {
-				if (division != null && division.length() >= 5 && division.length() <= 10
-						&& !Character.isDigit(division.charAt(i))
-						&& !this.specialCharacters.contains(Character.toString(division.charAt(i)))) {
-					System.out.println("Valid Division");
-				} else {
-					throw new InvalidDataException("Invalid Division");
-				}
+			boolean validDivision = false;
+			validDivision = validatingDivision(division, validDivision);
+			if (validDivision) {
+				System.out.println("Valid Division");
 			}
 			if (dueDate != null) {
 				System.out.println("Valid Due Date");
@@ -78,10 +70,36 @@ public class PowerConsumptionServiceImp implements PowerConsumptionService {
 
 			Double dueAmount = ratePerUnit * unitConsumed;
 			dto.setDueAmount(dueAmount);
-			dao.save(dto);
+			return dao.save(dto);
 
 		}
 		return false;
+	}
+
+	private boolean validatingDivision(String division, boolean validDivision) throws InvalidDataException {
+		for (int i = 0; i < division.length(); i++) {
+			if (division != null && division.length() >= 5 && division.length() <= 10
+					&& !Character.isDigit(division.charAt(i))
+					&& !this.specialCharacters.contains(Character.toString(division.charAt(i)))) {
+				validDivision = true;
+			} else {
+				throw new InvalidDataException("Invalid Division");
+			}
+		}
+		return validDivision;
+	}
+
+	private boolean validatingName(String customerName, boolean validName) throws InvalidDataException {
+		for (int i = 0; i < customerName.length(); i++) {
+			if (customerName != null && customerName.length() >= 3 && customerName.length() <= 15
+					&& !Character.isDigit(customerName.charAt(i))
+					&& !this.specialCharacters.contains(Character.toString(customerName.charAt(i)))) {
+				validName = true;
+			} else {
+				throw new InvalidDataException("Invalid Name");
+			}
+		}
+		return validName;
 	}
 
 	@Override
@@ -101,101 +119,106 @@ public class PowerConsumptionServiceImp implements PowerConsumptionService {
 	}
 
 	@Override
-	public Optional<PowerConsumptionDTO> findByName(String name) {
-		for (int i = 0; i < name.length(); i++) {
-			if (name != null && name.equalsIgnoreCase(name) && !Character.isDigit(name.charAt(i))
-					&& !this.specialCharacters.contains(Character.toString(name.charAt(i)))) {
-				System.out.println("The Name is Valid");
+	public Optional<PowerConsumptionDTO> findByName(String name) throws InvalidDataException {
+		boolean validName = false;
+		validName = validatingName(name, validName);
+		if (validName) {
+			System.out.println("Valid Name");
+			return this.dao.findByName(name);
 
-			}
 		}
-		return this.dao.findByName(name);
+		return Optional.empty();
+
 	}
 
 	@Override
-	public void deleteByCustomerName(String name) {
-		this.dao.deleteByCustomerName(name);
-	}
-
-	@Override
-	public void deleteByDivision(String division) {
-		this.dao.deleteByDivision(division);
-	}
-
-	@Override
-	public void updateMinChargeByDivision(String division, double min) {
-		for (int i = 0; i < division.length(); i++) {
-			if (division != null && division.equalsIgnoreCase(division) && !Character.isDigit(division.charAt(i))
-					&& !this.specialCharacters.contains(Character.toString(division.charAt(i)))) {
-				System.out.println("Valid Division");
-			}
-			this.dao.updateMinChargeByDivision(division, min);
+	public void deleteByCustomerName(String name) throws InvalidDataException {
+		boolean validName = false;
+		validName = validatingName(name, validName);
+		if (validName) {
+			System.out.println("Valid Name");
+			this.dao.deleteByCustomerName(name);
 		}
 	}
 
 	@Override
-	public void updateRatePerUnitByDivision(String division, double newRate) {
-		for (int i = 0; i < division.length(); i++) {
-			if (division != null && division.equalsIgnoreCase(division) && !Character.isDigit(division.charAt(i))
-					&& !this.specialCharacters.contains(Character.toString(division.charAt(i)))) {
-				System.out.println("Valid Division");
-			}
+	public void deleteByDivision(String division) throws InvalidDataException {
+		boolean validDivision = false;
+		validDivision = validatingDivision(division, validDivision);
+		if (validDivision) {
+			System.out.println("Valid Division");
+			this.dao.deleteByDivision(division);
+		}
+	}
+
+	@Override
+	public void updateMinChargeByDivision(String division, double min) throws InvalidDataException {
+		boolean validDivision = false;
+		validDivision = validatingDivision(division, validDivision);
+		if (validDivision) {
+			System.out.println("Valid Division");
+		}
+		this.dao.updateMinChargeByDivision(division, min);
+	}
+
+	@Override
+	public void updateRatePerUnitByDivision(String division, double newRate) throws InvalidDataException {
+		boolean validDivision = false;
+		validDivision = validatingDivision(division, validDivision);
+		if (validDivision) {
+			System.out.println("Valid Division");
 		}
 		this.dao.updateRatePerUnitByDivision(division, newRate);
 	}
 
 	@Override
-	public Optional<PowerConsumptionDTO[]> findByDivision(String division) {
-		for (int i = 0; i < division.length(); i++) {
-			if (division != null && division.equalsIgnoreCase(division) && !Character.isDigit(division.charAt(i))
-					&& !this.specialCharacters.contains(Character.toString(division.charAt(i)))) {
-				System.out.println("Valid Division");
-			}
+	public Optional<PowerConsumptionDTO[]> findByDivision(String division) throws InvalidDataException {
+		boolean validDivision = false;
+		validDivision = validatingDivision(division, validDivision);
+		if (validDivision) {
+			System.out.println("Valid Division");
 		}
 
 		return this.dao.findByDivision(division);
 	}
 
 	@Override
-	public Optional<PowerConsumptionDTO> findByCustomerNameAndDivision(String name, String division) {
-		for (int i = 0; i < division.length(); i++) {
-			for (int j = 0; j < name.length(); j++) {
-				if (division != null && division.equalsIgnoreCase(division) && name != null
-						&& name.equalsIgnoreCase(name) && !Character.isDigit(division.charAt(i))
-						&& !Character.isDigit(name.charAt(j))
-						&& !this.specialCharacters.contains(Character.toString(name.charAt(j)))
-						&& !this.specialCharacters.contains(Character.toString(division.charAt(i)))) {
-					System.out.println("Valid Division and Valid Name");
-				}
-			}
+	public Optional<PowerConsumptionDTO> findByCustomerNameAndDivision(String name, String division)
+			throws InvalidDataException {
+		boolean validDivision = false;
+		boolean validName = false;
+		validDivision = validatingDivision(division, validDivision);
+		if (validDivision) {
+			System.out.println("Valid Division");
 		}
-
+		validName = validatingName(name, validName);
+		if (validName) {
+			System.out.println("Valid Name");
+		}
 		return this.dao.findByCustomerNameAndDivision(name, division);
 
 	}
 
 	@Override
-	public Optional<Double> findRatePerUnitByDivision(String division) {
-		for (int i = 0; i < division.length(); i++) {
-			if (division != null && division.equalsIgnoreCase(division) && !Character.isDigit(division.charAt(i))
-					&& !this.specialCharacters.contains(Character.toString(division.charAt(i)))) {
-				System.out.println("Valid Division");
-			}
+	public Optional<Double> findRatePerUnitByDivision(String division) throws InvalidDataException {
+		boolean validDivision = false;
+		validDivision = validatingDivision(division, validDivision);
+		if (validDivision) {
+			System.out.println("Valid Division");
 		}
 
 		return this.dao.findRatePerUnitByDivision(division);
 	}
 
 	@Override
-	public Optional<Double> findDueAmountByCustomerName(String customerName) {
-		for (int i = 0; i < customerName.length(); i++) {
-			if (customerName != null && customerName.equalsIgnoreCase(customerName)
-					&& !Character.isDigit(customerName.charAt(i))
-					&& !this.specialCharacters.contains(Character.toString(customerName.charAt(i)))) {
-				System.out.println("The Name is Valid");
-			}
-		}
-		return this.dao.findDueAmountByCustomerName(customerName);
-	}
+	public Optional<Double> findDueAmountByCustomerName(String customerName) throws InvalidDataException {
+		boolean validName = false;
+		validName = validatingName(customerName, validName);
+		if (validName) {
+			System.out.println("Valid Name");
+			return this.dao.findDueAmountByCustomerName(customerName);
 
+		}
+		return Optional.empty();
+	}
 }

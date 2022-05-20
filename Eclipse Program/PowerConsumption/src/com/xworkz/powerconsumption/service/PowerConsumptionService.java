@@ -13,22 +13,22 @@ public interface PowerConsumptionService {
 
 	void printDetails();
 
-	Optional<PowerConsumptionDTO> findByName(String name);
+	Optional<PowerConsumptionDTO> findByName(String name) throws InvalidDataException;
 
-	void deleteByCustomerName(String name);
+	void deleteByCustomerName(String name) throws InvalidDataException;
 
-	void deleteByDivision(String division);// many delete
+	void deleteByDivision(String division) throws InvalidDataException;// many delete
 
-	void updateMinChargeByDivision(String division, double min);
+	void updateMinChargeByDivision(String division, double min) throws InvalidDataException;
 
-	void updateRatePerUnitByDivision(String division, double newRate);
+	void updateRatePerUnitByDivision(String division, double newRate) throws InvalidDataException;
 
-	Optional<PowerConsumptionDTO[]> findByDivision(String division);
+	Optional<PowerConsumptionDTO[]> findByDivision(String division) throws InvalidDataException;
 
-	Optional<PowerConsumptionDTO> findByCustomerNameAndDivision(String name, String division);
+	Optional<PowerConsumptionDTO> findByCustomerNameAndDivision(String name, String division) throws InvalidDataException;
 
-	Optional<Double> findRatePerUnitByDivision(String division);
+	Optional<Double> findRatePerUnitByDivision(String division) throws InvalidDataException;
 
-	Optional<Double> findDueAmountByCustomerName(String customerName);
+	Optional<Double> findDueAmountByCustomerName(String customerName) throws InvalidDataException;
 
 }
