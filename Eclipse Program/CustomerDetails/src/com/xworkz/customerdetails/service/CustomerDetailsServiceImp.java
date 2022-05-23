@@ -34,21 +34,22 @@ public class CustomerDetailsServiceImp implements CustomerDetailsService {
 			} else {
 				System.err.println("id is invalid");
 			}
-			for (int j = 0; j < name.length(); j++) {
-				if (name != null && name.length() < 3 && name.length() > 20 && !Character.isDigit(name.charAt(j))) {
-					System.out.println("name is valid ");
-				} else {
-					System.err.println("name is invalid ");
-				}
+
+			if (name != null && name.length() > 3 && !name.matches(".*[0-9!@#$%^&*()<>?,.;].*")
+					&& name.length() < 20) {
+				System.out.println("name is valid ");
+			} else {
+				System.err.println("name is invalid ");
 			}
-			for (int i = 0; i < email.length(); i++) {
-				if (email != null && email.length() < 3 && name.length() > 30 && !Character.isDigit(email.charAt(i))) {
-					System.out.println("email is valid");
-				} else {
-					System.err.println("email is invalid");
-				}
+
+			if (email != null && email.length() > 3 && email.length() < 30 && email.endsWith(".com")
+					&& email.matches(".*[@].*")) {
+				System.out.println("email is valid");
+			} else {
+				System.err.println("email is invalid");
 			}
-			if (dob != null) {
+
+			if (dob != null && dob.isBefore(LocalDate.now())) {
 				System.out.println("dob is valid ");
 			} else {
 				System.err.println("dob is invalid");
@@ -58,48 +59,43 @@ public class CustomerDetailsServiceImp implements CustomerDetailsService {
 			} else {
 				System.err.println("gender is invalid");
 			}
-			for (int k = 0; k < occupation.length(); k++) {
-				if (occupation != null && occupation.length() < 3 && occupation.length() > 30
-						&& !Character.isDigit(occupation.charAt(k))) {
-					System.out.println("occupation is valid ");
-				} else {
-					System.err.println("occupation is invalid");
-				}
+			if (occupation != null && occupation.length() > 3 && occupation.length() < 30
+					&& !occupation.matches(".*[0-9!@#$%^&*()<>?,./;].*")) {
+				System.out.println("occupation is valid ");
+			} else {
+				System.err.println("occupation is invalid");
 			}
+
 			if (addressDTO != null) {
-				System.out.println("addressdto is valid");
-			} else {
-				System.err.println("addressdto is invalid");
-			}
-		}
-			if (id1 != null && id1 > 0) {
-				System.out.println("id1 is valid");
-			} else {
-				System.err.println("id1 is invalid");
-			}
-			for (int a = 0; a < street.length(); a++) {
-				if (street != null && street.length() < 3 && street.length() > 30
-						&& !Character.isDigit(street.charAt(a))) {
+
+				if (id1 != null && id1 > 0) {
+					System.out.println("id1 is valid");
+				} else {
+					System.err.println("id1 is invalid");
+				}
+
+				if (street != null && street.length() > 3 && street.length() < 30
+						&& !street.matches(".*[!@#$%^&*()<>?,./;].*")) {
 					System.out.println("street is valid");
 				} else {
 					System.err.println("street is invalid");
 				}
-			}
-			for (int l = 0; l < city.length(); l++) {
-				if (city != null && city.length() < 3 && city.length() > 30 && !Character.isDigit(city.charAt(l))) {
+
+				if (city != null && city.length() > 3 && city.length() < 30
+						&& !city.matches(".*[0-9!@#$%^&*()<>?,./;].*")) {
 					System.out.println("city is valid");
 				} else {
 					System.err.println("city is invalid");
 				}
-			}
-			if (no != null && no > 0) {
-				System.out.println("no is valid");
-			} else {
-				System.err.println("no is valid");
-			}
-			for (int v = 0; v < landmark.length(); v++) {
-				if (landmark != null && landmark.length() < 3 && landmark.length() > 30
-						&& !Character.isDigit(landmark.charAt(v))) {
+
+				if (no != null && no > 0) {
+					System.out.println("no is valid");
+				} else {
+					System.err.println("no is valid");
+				}
+
+				if (landmark != null && landmark.length() > 3 && landmark.length() < 30
+						&& !landmark.matches(".*[0-9!@#$%^&*()<>?,./;].*")) {
 					System.out.println("landmark is valid");
 				} else {
 					System.err.println("landmark is invalid");
@@ -107,5 +103,6 @@ public class CustomerDetailsServiceImp implements CustomerDetailsService {
 			}
 		}
 		return this.dao.save(dto);
+		
 	}
 }
