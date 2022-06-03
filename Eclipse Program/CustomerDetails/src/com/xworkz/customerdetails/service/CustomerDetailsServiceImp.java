@@ -35,8 +35,7 @@ public class CustomerDetailsServiceImp implements CustomerDetailsService {
 				System.err.println("id is invalid");
 			}
 
-			if (name != null && name.length() > 3 && !name.matches(".*[0-9!@#$%^&*()<>?,.;].*")
-					&& name.length() < 20) {
+			if (name != null && name.length() > 3 && !name.matches(".*[0-9!@#$%^&*()<>?,.;].*") && name.length() < 20) {
 				System.out.println("name is valid ");
 			} else {
 				System.err.println("name is invalid ");
@@ -103,6 +102,6 @@ public class CustomerDetailsServiceImp implements CustomerDetailsService {
 			}
 		}
 		return this.dao.save(dto);
-		
+
 	}
 }

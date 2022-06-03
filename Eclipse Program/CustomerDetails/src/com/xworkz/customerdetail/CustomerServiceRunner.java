@@ -21,8 +21,7 @@ public class CustomerServiceRunner {
 				Gender.MALE, "Software Developer", address1);
 		serv.validateAndSave(detail1);
 
-		AddressDTO address2 = new AddressDTO(2, "BTM 2nd Stage", "Bangalore", "Karnataka", 560089,
-				"Krishna Gents PG");
+		AddressDTO address2 = new AddressDTO(2, "BTM 2nd Stage", "Bangalore", "Karnataka", 560089, "Krishna Gents PG");
 		CustomerDTO detail2 = new CustomerDTO(2, "Suhas", "suhasnb@gmail.com", LocalDate.of(1996, 10, 21), Gender.MALE,
 				"Software Developer", address2);
 		serv.validateAndSave(detail2);
@@ -37,8 +36,7 @@ public class CustomerServiceRunner {
 				Gender.MALE, "Database Administrator", address4);
 		serv.validateAndSave(detail4);
 
-		AddressDTO address5 = new AddressDTO(5, "Bilekahalli", "Bangalore", "Karnataka", 560087,
-				"Empire Restuarant");
+		AddressDTO address5 = new AddressDTO(5, "Bilekahalli", "Bangalore", "Karnataka", 560087, "Empire Restuarant");
 		CustomerDTO detail5 = new CustomerDTO(5, "Poojitha", "poojitham@gmail.com", LocalDate.of(1997, 1, 17),
 				Gender.FEMALE, "IT Consultant", address5);
 		serv.validateAndSave(detail5);
