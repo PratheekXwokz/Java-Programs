@@ -277,7 +277,7 @@ public class PersonDataRunner {
 		data.put(per86, add86);
 		data.put(per87, add87);
 
-		System.out.println("Sorting based on Person Name");
+		System.out.println("Sorting based on Person Name: ");
 
 		Set<PersonDTO> name = data.keySet();
 		name.stream().sorted().forEach(System.out::println);
@@ -286,6 +286,9 @@ public class PersonDataRunner {
 
 		Collection<AddressDTO> address = data.values();
 		address.stream().sorted().forEach(System.out::println);
+		
+		System.out.println("Get address by Key");
+		System.out.println(data.get(per45));
 
 	}
 
