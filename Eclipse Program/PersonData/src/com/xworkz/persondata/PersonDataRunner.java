@@ -4,6 +4,8 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
+import java.util.TreeSet;
 
 import com.xworkz.persondata.dto.AddressDTO;
 import com.xworkz.persondata.dto.PersonDTO;
@@ -277,18 +279,39 @@ public class PersonDataRunner {
 		data.put(per86, add86);
 		data.put(per87, add87);
 
-		System.out.println("Sorting based on Person Name: ");
+		TreeMap<PersonDTO, AddressDTO> map = new TreeMap<PersonDTO, AddressDTO>(data);
+		map.entrySet().stream().forEach(System.out::println);
 
-		Set<PersonDTO> name = data.keySet();
-		name.stream().sorted().forEach(System.out::println);
+		System.out.println("Sort by Address id");
+		data.entrySet().stream().sorted((e1, e2) -> {
+			AddressDTO addressDTO1 = e1.getValue();
+			AddressDTO addressDTO2 = e2.getValue();
+			return addressDTO1.getId().compareTo(addressDTO2.getId());
+		}).forEach(entry -> {
+			PersonDTO personDTO = entry.getKey();
+			AddressDTO addressDTO = entry.getValue();
+			System.out.println("Name: " + personDTO.getName() + " Id: " + addressDTO.getId());
+		});
 
-		System.out.println("Sort by Address id: ");
-
-		Collection<AddressDTO> address = data.values();
-		address.stream().sorted().forEach(System.out::println);
+		System.out.println("Find by Name and EnailID");
+		data.entrySet().stream().filter(entry -> {
+			PersonDTO dto = entry.getKey();
+			if (dto.getName().equalsIgnoreCase("pratheek")
+					&& dto.getEmail().equalsIgnoreCase("pratheekkc13@gmail.com")) {
+				return true;
+			}
+			return false;
+		}).forEach(System.out::println);
 		
-		System.out.println("Get address by Key");
-		System.out.println(data.get(per45));
+		System.out.println("Find By Street name and Door No");
+		data.entrySet().stream().filter(entry ->{
+			AddressDTO dto=entry.getValue();
+			if(dto.getDoorNo().equals(201) && 
+					dto.getStreet().equals("Hunsur")) {
+				return true;
+			}
+			return false;
+		}).forEach(System.out::println);
 
 	}
 
