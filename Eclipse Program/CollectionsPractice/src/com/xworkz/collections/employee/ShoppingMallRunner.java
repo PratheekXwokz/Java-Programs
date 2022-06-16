@@ -18,6 +18,8 @@ public class ShoppingMallRunner {
 		List<ShoppingMallDTO> shop=Arrays.asList(mall,mall1,mall2,mall3,mall4,mall5);
 		
 		shop.stream().sorted().forEach(System.out::println);
+		
+
 
 	}
 

@@ -1,5 +1,9 @@
 package com.xworkz.sql.connector;
 
+import static com.xworkz.sql.constants.JDBCProperties.SECRET;
+import static com.xworkz.sql.constants.JDBCProperties.URL;
+import static com.xworkz.sql.constants.JDBCProperties.USERNAME;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -8,10 +12,8 @@ import java.sql.Statement;
 public class Waterfalls {
 	public static void main(String[] args) {
 
-		String url = "jdbc:mysql://localhost:3306/Xworkz_BTM_March7th";
-		String username = "root";
-		String password = "13398";
-		try (Connection connection = DriverManager.getConnection(url, username, password)) {
+		try (Connection connection = DriverManager.getConnection(URL.getValues(), USERNAME.getValues(),
+				SECRET.getValues())) {
 			System.out.println(connection);
 
 			String falls1 = "INSERT into waterfalls values(1,'Jog',200,'Bhatkal','Karnataka','8.30','6.00','259',9,4.5,30000);";

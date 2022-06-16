@@ -1,5 +1,9 @@
 package com.xworkz.sql.connector;
 
+import static com.xworkz.sql.constants.JDBCProperties.SECRET;
+import static com.xworkz.sql.constants.JDBCProperties.URL;
+import static com.xworkz.sql.constants.JDBCProperties.USERNAME;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -8,10 +12,8 @@ import java.sql.Statement;
 public class PayingGuest {
 
 	public static void main(String[] args) {
-		String url = "jdbc:mysql://localhost:3306/Xworkz_BTM_March7th";
-		String userName = "root";
-		String password = "13398";
-		try (Connection connection = DriverManager.getConnection(url, userName, password)) {
+		try (Connection connection = DriverManager.getConnection(URL.getValues(), USERNAME.getValues(),
+				SECRET.getValues())) {
 			System.out.println(connection);
 			String guest = "INSERT INTO Paying_Guest VALUES(2,'Raghu',25,'Male','Developer','BTM',"
 					+ "'Bengaluru','Karnataka',1,9876983210,'Accenture','Diary Circle',560089,25,5000,100,500);";
