@@ -1,5 +1,9 @@
 package com.xworkz.sql.connector;
 
+import static com.xworkz.sql.constants.JDBCProperties.SECRET;
+import static com.xworkz.sql.constants.JDBCProperties.URL;
+import static com.xworkz.sql.constants.JDBCProperties.USERNAME;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -7,11 +11,8 @@ import java.sql.Statement;
 
 public class Apartment {
 	public static void main(String[] args) {
-
-		String url = "jdbc:mysql://localhost:3306/Xworkz_BTM_March7th";
-		String username = "root";
-		String password = "13398";
-		try (Connection connection = DriverManager.getConnection(url, username, password)) {
+		try (Connection connection = DriverManager.getConnection(URL.getValues(), USERNAME.getValues(),
+				SECRET.getValues())) {
 			System.out.println(connection);
 
 			String apt1 = "INSERT into apartment values(1,'Oracle Apartments','Bengaluru','BTM',100,15,123,2,7500,'99837373','9827383738',1,0);";
