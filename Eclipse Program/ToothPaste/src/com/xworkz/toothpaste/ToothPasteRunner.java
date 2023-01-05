@@ -55,7 +55,7 @@ public class ToothPasteRunner {
 		tooth3.setExpiryDate(LocalDate.of(2022, 7, 25));
 
 		ToothPasteDTO tooth4 = new ToothPasteDTO();
-		tooth4.setId(0);
+		tooth4.setId(5);
 		tooth4.setBrand("CloseUp");
 		tooth4.setColor(Color.RED);
 		tooth4.setQuantityInGms(Grams.HUNDRED);

@@ -49,7 +49,6 @@ public class NationalParksRunner {
 			System.out.println(parkDTO2);
 
 		}
-
 		System.out.println("The Count is " + park.stream().count());
 
 		System.out.println("Find Any");
